@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Hash Block.IA Dark Theme */
+    --background: 0 0% 0%; /* Pure black */
+    --foreground: 0 0% 100%; /* Pure white */
+    --card: 0 0% 6.7%; /* Dark gray */
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 6.7%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 51 100% 50%; /* Gold */
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 53.3%;
+    --accent: 51 100% 50%; /* Gold accent */
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 20%;
+    --input: 0 0% 10%;
+    --ring: 51 100% 50%;
+    --chart-1: 51 100% 50%;
+    --chart-2: 45 93% 47%;
+    --chart-3: 39 100% 50%;
+    --chart-4: 60 100% 50%;
+    --chart-5: 35 100% 50%;
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-hashblock-black text-white font-inter antialiased;
+    background: linear-gradient(135deg, #000000 0%, #111111 100%);
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .mining-card {
+    @apply bg-gradient-to-br from-hashblock-black to-hashblock-dark border border-hashblock-gold/20 rounded-xl p-6 shadow-2xl;
+    backdrop-filter: blur(10px);
+  }
+  
+  .mining-card:hover {
+    @apply border-hashblock-gold/40 shadow-hashblock-gold/10;
+    box-shadow: 0 25px 50px -12px rgba(255, 215, 0, 0.1);
+  }
+  
+  .gold-button {
+    @apply bg-gradient-gold text-black font-semibold px-6 py-3 rounded-lg hover:scale-105 transition-all duration-200 shadow-lg;
+  }
+  
+  .gold-button:hover {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+  }
+  
+  .glass-card {
+    @apply bg-hashblock-dark/50 backdrop-blur-md border border-white/10 rounded-xl;
+  }
+  
+  .mining-active {
+    @apply animate-mining-pulse;
+  }
+  
+  .glow-text {
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  }
+  
+  .nav-link {
+    @apply text-hashblock-text-muted hover:text-hashblock-gold transition-colors duration-200 font-medium;
+  }
+  
+  .nav-link.active {
+    @apply text-hashblock-gold;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111111;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FFD700;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #FFA500;
+}
+
+/* Mining animation effects */
+.mining-indicator {
+  position: relative;
+}
+
+.mining-indicator::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 30%, rgba(255, 215, 0, 0.1) 50%, transparent 70%);
+  animation: mining-sweep 2s infinite;
+}
+
+@keyframes mining-sweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Hide Next.js development indicators */
+body > nextjs-portal {
+  display: none;
+}
+
+#__next-build-watcher {
+  display: none !important;
+}
